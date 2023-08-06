@@ -113,39 +113,69 @@ double getQ(double *input, int Q){
   return qValue;
 }
 
-//methode for get mode
-double getMode(double *input){
-  double mode = 0.0;
-  for(int i = 0; i < getSize(input) - 1; i++){
-    if(input[i] > mode){
-      mode = input[i];
+double getMin(double *input){
+  double min = SENTINEL;
+  for(int i = 0; i < getSize(input); i++){
+    if(input[i] < min){
+      min = input[i];
     }
   }
-  return mode;
+  return min;
+}
+
+//methode for get mode
+double getMax(double *input){
+  double max = 0.0;
+  for(int i = 0; i < getSize(input); i++){
+    if(input[i] > max){
+      max = input[i];
+    }
+  }
+  return max;
 }
 
 //methode for get mode
 double getMean(double *input){
   double sum = 0.0;
-  for(int i = 0; i < getSize(input) - 1; i++){
+  for(int i = 0; i < getSize(input); i++){
     sum = sum + input[i];
   }
-  double mean = sum / (getSize(input) - 1);
+  double mean = sum / (getSize(input));
   return mean;
 }
 
 
 //main methode heres the place programme start executing
 int main() {
-    //we have to mark last value of the arry due to langwage limitation
-    double input[] = {0.5, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, SENTINEL};
+    double input[] = 
+  {
+  0,
+  1.0, 
+  2.0, 
+  3.0, 
+  4.0, 
+  5.0, 
+  6.0, 
+  7, 
+  8.0, 
+  SENTINEL};
+  
     printf("-------------------------------\n");
     printf("Five Number Summery\n");
-    printf("1. Q1 : %lf\n" , getQ(input,1));
-    printf("2. Q2 : %lf\n" , getQ(input,2));
-    printf("3. Q3 : %lf\n" , getQ(input,3));
-    printf("4. Mode : %lf\n" , getMode(input));
-    printf("5. Mean : %lf\n" , getMean(input));
+    printf("1. Min : %lf\n" , getMin(input));
+    printf("2. Q1 : %lf\n" , getQ(input,1));
+    printf("3. Q2 : %lf\n" , getQ(input,2));
+    printf("4. Q3 : %lf\n" , getQ(input,3));
+    printf("5. Max : %lf\n" , getMax(input));
+    printf("-------------------------------\n");
+    printf("Central Tendency\n");
+    printf("6. Mean : %lf\n" , getMean(input));
+    printf("7. Median : %lf\n" , getQ(input,2));
     printf("-------------------------------\n");
     return 0;
+
+
+
+  //------|     |     |----------------
+  //0.0   1.5   4.0   6.5           8.0
 }
